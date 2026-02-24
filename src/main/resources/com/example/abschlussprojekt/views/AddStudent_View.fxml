@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="377.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.AddStudent_Controller">
+   <children>
+      <TextField fx:id="vorname_textfield" layoutX="56.0" layoutY="68.0" promptText="vorname" />
+      <Button fx:id="save_button" layoutX="262.0" layoutY="268.0" mnemonicParsing="false" text="save" />
+      <TextField fx:id="nachname_textfield" layoutX="56.0" layoutY="122.0" promptText="nachname" />
+      <TextField fx:id="studiengang_textfield" layoutX="56.0" layoutY="176.0" promptText="studiengang" />
+      <TextField fx:id="fachsemester_textfield" layoutX="302.0" layoutY="68.0" promptText="fachsemester" />
+      <TextField fx:id="matrikelnummer_textfield" layoutX="302.0" layoutY="122.0" promptText="matrikelnummer" />
+      <TextField fx:id="email_textfield" layoutX="302.0" layoutY="176.0" promptText="email" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.ChangeStudent_Controller">
+   <children>
+      <GridPane hgap="40.0" layoutX="67.0" layoutY="34.0" prefHeight="245.0" prefWidth="503.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="34.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="327.0" minWidth="10.0" prefWidth="224.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="239.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="vorname_textfield" promptText="vorname" GridPane.hgrow="ALWAYS" />
+            <TextField fx:id="nachname_textfield" promptText="nachname" GridPane.rowIndex="1" />
+            <TextField fx:id="studiengang_textfield" promptText="studiengang" GridPane.rowIndex="2" />
+            <TextField fx:id="fachsemester_textfield" promptText="fachsemester" GridPane.columnIndex="1" />
+            <TextField fx:id="matrikelnummer_textfield" promptText="matrikelnummer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="email_textfield" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" layoutX="236.0" layoutY="299.0" prefHeight="55.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="299.0">
+         <children>
+            <Button fx:id="cancel_button" alignment="TOP_CENTER" mnemonicParsing="false" text="reset">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="save_button" mnemonicParsing="false" text="save">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
