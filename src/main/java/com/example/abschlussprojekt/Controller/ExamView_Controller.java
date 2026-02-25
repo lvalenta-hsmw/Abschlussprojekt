@@ -85,8 +85,10 @@ public class ExamView_Controller {
         //Buttons
         change_Prüfungsleistung.disableProperty().bind(viewModel.alles_change_okayProperty().not());
         change_Prüfungsleistung.setOnAction(e->viewModel.commit_change());
+
         add_Prüfungsleistung.disableProperty().bind(viewmodel.alles_add_okayProperty().not());
         add_Prüfungsleistung.setOnAction(e->viewModel.commit_add());
+
         //wenn keine Prüfungsleistung ausgewählt ist keine Löschung möglich
         delete_Prüfungsleistung.disableProperty().bind(viewmodel.SelectedPrüfungsleistungProperty().isNull());
         delete_Prüfungsleistung.setOnAction(e->{

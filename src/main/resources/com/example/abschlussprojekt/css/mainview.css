@@ -1,0 +1,46 @@
+
+
+.root{
+    -backgroundcolor1: black;
+    -backgroundcolor2: #021322;
+    -backgroundcolor3: #0E5CA4;
+    -bordercolor1: white;
+    -textcolor1: white;
+}
+
+.button_style {
+    -fx-background-color: -backgroundcolor1;
+    -fx-border-color: -bordercolor1;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: -textcolor1;
+    -fx-max-width: Infinity;
+
+}
+
+.search_Textfield {
+    -fx-background-color: -backgroundcolor1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: -bordercolor1;
+}
+
+.table-view {
+    -fx-background-color: -backgroundcolor3;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+}
+
+.column-header-background .column-header-background{
+    -fx-background-color: -backgroundcolor3;
+}
+
+.column-header-background .column-header-background .label {
+    -fx-text-fill: -textcolor1;
+}
+
+.column-header {
+    -fx-border-color: white;
+}
+

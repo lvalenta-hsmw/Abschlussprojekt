@@ -88,7 +88,7 @@ public class ExamView_ViewModel {
 
     private void clearfield(){
         datum_change.set(null);
-        note_change.set(0);            //Default Wert 0 denn sosnt hätte man ObjectProperty <Double> nutzen müssen um note.set(null) ausführen zu können --> Hier wird mit Noten gerechnet daher sollen Sie immer ein Wert haben.
+        note_change.set(0.0);            //Default Wert 0 denn sosnt hätte man ObjectProperty <Double> nutzen müssen um note.set(null) ausführen zu können --> Hier wird mit Noten gerechnet daher sollen Sie immer ein Wert haben.
         fach_change.set("");
     }
 

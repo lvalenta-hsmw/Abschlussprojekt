@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.ChangeStudent_Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" stylesheets="@../css/mainview.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.ChangeStudent_Controller">
    <children>
       <GridPane hgap="40.0" layoutX="67.0" layoutY="34.0" prefHeight="245.0" prefWidth="503.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="34.0">
         <columnConstraints>
@@ -32,12 +32,12 @@
       </GridPane>
       <HBox alignment="CENTER" layoutX="236.0" layoutY="299.0" prefHeight="55.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="299.0">
          <children>
-            <Button fx:id="cancel_button" alignment="TOP_CENTER" mnemonicParsing="false" text="reset">
+            <Button fx:id="cancel_button" alignment="TOP_CENTER" mnemonicParsing="false" style="-fx-background-color: #0F2145;" styleClass="button_style" text="reset">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="save_button" mnemonicParsing="false" text="save">
+            <Button fx:id="save_button" mnemonicParsing="false" style="-fx-background-color: #0F2145;" styleClass="button_style" text="save">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

@@ -16,47 +16,50 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1191.0" style="-fx-background-color: black;" stylesheets="@../css/mainview.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.MainView_Controller">
     <left>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="add_btn" mnemonicParsing="false" text="Add" />
-            <Button fx:id="change_btn" mnemonicParsing="false" text="change" />
-            <Button fx:id="exam_btn" mnemonicParsing="false" text="Notenübersicht" />
-            <Button fx:id="delete_btn" mnemonicParsing="false" text="delete" />
-         </children></VBox>
+            <Button fx:id="add_btn" maxWidth="0.0" mnemonicParsing="false" styleClass="button_style" text="Add" textFill="WHITE" VBox.vgrow="ALWAYS" />
+            <Button fx:id="change_btn" mnemonicParsing="false" styleClass="button_style" text="change" />
+            <Button fx:id="exam_btn" mnemonicParsing="false" styleClass="button_style" text="Notenübersicht" />
+            <Button fx:id="delete_btn" mnemonicParsing="false" styleClass="button_style" text="delete" />
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" top="60.0" />
+         </padding></VBox>
     </left>
     <top>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </top>
     <center>
-        <SplitPane dividerPositions="0.5379310344827586" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" style="-fx-background-color: #04062A;" BorderPane.alignment="CENTER">
+        <SplitPane dividerPositions="0.3393103448275862" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" style="-fx-background-color: #021322;" BorderPane.alignment="CENTER">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                <AnchorPane minHeight="100.0">
                     <children>
                         <Label layoutX="29.0" layoutY="23.0" text="Studentenliste" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
                         </Label>
-                  <TextField fx:id="vorname_textfield" layoutX="53.0" layoutY="169.0" promptText="Vorname" />
-                  <TextField fx:id="nachname_textfield" layoutX="233.0" layoutY="24.0" promptText="Nachname" />
-                  <TextField fx:id="durchschnitt_textfield" layoutX="597.0" layoutY="239.0" promptText="Durchschnitt" />
-                  <TextField fx:id="email_textfield" layoutX="597.0" layoutY="169.0" promptText="Email" />
-                  <TextField fx:id="matrikelnummer_textfield" layoutX="53.0" layoutY="239.0" promptText="Matrikelnummer" />
-                  <TextField fx:id="studiengang_textfield" layoutX="324.0" layoutY="169.0" promptText="Studiengang" />
-                  <TextField fx:id="fachsemester_textfield" layoutX="324.0" layoutY="239.0" promptText="Fachsemester" />
+                  <TextField fx:id="vorname_textfield" layoutX="69.0" layoutY="107.0" promptText="Vorname" styleClass="search_Textfield" />
+                  <TextField fx:id="nachname_textfield" layoutX="233.0" layoutY="24.0" promptText="Nachname" styleClass="search_Textfield" />
+                  <TextField fx:id="durchschnitt_textfield" layoutX="613.0" layoutY="177.0" promptText="Durchschnitt" styleClass="search_Textfield" />
+                  <TextField fx:id="email_textfield" layoutX="613.0" layoutY="107.0" promptText="Email" styleClass="search_Textfield" />
+                  <TextField fx:id="matrikelnummer_textfield" layoutX="69.0" layoutY="177.0" promptText="Matrikelnummer" styleClass="search_Textfield" />
+                  <TextField fx:id="studiengang_textfield" layoutX="340.0" layoutY="107.0" promptText="Studiengang" styleClass="search_Textfield" />
+                  <TextField fx:id="fachsemester_textfield" layoutX="340.0" layoutY="177.0" promptText="Fachsemester" styleClass="search_Textfield" />
                     </children>
                 </AnchorPane>
                 <StackPane>
                     <children>
-                        <TableView fx:id="studentTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0F2145;">
+                        <TableView fx:id="studentTable" prefHeight="200.0" prefWidth="200.0">
                             <columns>
-                                <TableColumn fx:id="vor_nameColumn" prefWidth="75.0" text="Vorname" />
-                        <TableColumn fx:id="nach_nameColumn" prefWidth="75.0" text="Nachname" />
-                                <TableColumn fx:id="studiengang_Column" prefWidth="75.0" text="Studiengang" />
-                        <TableColumn fx:id="fachsemester_Column" prefWidth="75.0" text="Fachsemester" />
-                        <TableColumn fx:id="matrikelnummer_Column" prefWidth="75.0" text="Matrikelnummer" />
-                        <TableColumn fx:id="email_Column" prefWidth="75.0" text="Email" />
-                        <TableColumn fx:id="durchschnitt_Column" prefWidth="75.0" text="Durchschnitt" />
+                                <TableColumn fx:id="vor_nameColumn" prefWidth="75.0" styleClass="column-header-background" text="Vorname" />
+                        <TableColumn fx:id="nach_nameColumn" prefWidth="75.0" styleClass="column-header-background" text="Nachname" />
+                                <TableColumn fx:id="studiengang_Column" prefWidth="75.0" styleClass="column-header-background" text="Studiengang" />
+                        <TableColumn fx:id="fachsemester_Column" prefWidth="75.0" styleClass="column-header-background" text="Fachsemester" />
+                        <TableColumn fx:id="matrikelnummer_Column" prefWidth="75.0" styleClass="column-header-background" text="Matrikelnummer" />
+                        <TableColumn fx:id="email_Column" prefWidth="75.0" styleClass="column-header-background" text="Email" />
+                        <TableColumn fx:id="durchschnitt_Column" prefWidth="75.0" styleClass="column-header-background" text="Durchschnitt" />
                             </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

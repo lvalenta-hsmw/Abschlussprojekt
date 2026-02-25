@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.ExamView_Controller">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: black;" stylesheets="@../css/mainview.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.ExamView_Controller">
    <children>
       <TableView fx:id="exam_table" layoutX="78.0" layoutY="80.0" prefHeight="259.0" prefWidth="428.0">
         <columns>
@@ -22,23 +22,23 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="change_Prüfungsleistung" layoutX="78.0" layoutY="535.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="übernehmen" />
+      <Button fx:id="change_Prüfungsleistung" layoutX="78.0" layoutY="535.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" styleClass="button_style" text="übernehmen" />
       <TextField fx:id="PLFach_Textfield_change" layoutX="37.0" layoutY="401.0" prefHeight="25.0" prefWidth="174.0" promptText="Fach" />
       <TextField fx:id="PLNote_Textfield_change" layoutX="37.0" layoutY="441.0" prefHeight="25.0" prefWidth="174.0" promptText="Note" />
       <DatePicker fx:id="PLDatum_Textfield_change" layoutX="37.0" layoutY="486.0" promptText="Datum" />
-      <Label layoutX="102.0" layoutY="356.0" text="Note ändern" />
-      <Line endX="-54.25" endY="186.0" layoutX="355.0" layoutY="414.0" startX="-55.0" startY="-75.0" />
-      <Line endX="397.5" layoutX="203.0" layoutY="339.0" startX="-205.0" />
-      <Label layoutX="251.0" layoutY="33.0" text="Notenübersicht">
+      <Label layoutX="102.0" layoutY="356.0" text="Note ändern" textFill="WHITE" />
+      <Line endX="-54.25" endY="186.0" layoutX="355.0" layoutY="414.0" startX="-55.0" startY="-75.0" stroke="WHITE" />
+      <Line endX="397.5" layoutX="203.0" layoutY="339.0" startX="-205.0" stroke="WHITE" />
+      <Label layoutX="251.0" layoutY="33.0" text="Notenübersicht" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="387.0" layoutY="356.0" text="neue Note hinzufügen" />
+      <Label layoutX="387.0" layoutY="356.0" text="neue Note hinzufügen" textFill="WHITE" />
       <TextField fx:id="PLFach_Textfield_add" layoutX="372.0" layoutY="401.0" prefHeight="25.0" prefWidth="174.0" promptText="Fach" />
       <TextField fx:id="PLNote_Textfield_add" layoutX="372.0" layoutY="441.0" prefHeight="25.0" prefWidth="174.0" promptText="Note" />
-      <DatePicker fx:id="PLDatum_Textfield_add" layoutX="372.0" layoutY="486.0" promptText="Datum" />
-      <Button fx:id="add_Prüfungsleistung" layoutX="421.0" layoutY="535.0" mnemonicParsing="false" text="hinzufügen" />
-      <Button fx:id="delete_Prüfungsleistung" layoutX="520.0" layoutY="185.0" mnemonicParsing="false" text="löschen" />
+      <DatePicker fx:id="PLDatum_Textfield_add" layoutX="372.0" layoutY="486.0" promptText="Datum" style="-fx-background-color: black;" />
+      <Button fx:id="add_Prüfungsleistung" layoutX="421.0" layoutY="535.0" mnemonicParsing="false" styleClass="button_style" text="hinzufügen" />
+      <Button fx:id="delete_Prüfungsleistung" layoutX="520.0" layoutY="185.0" mnemonicParsing="false" styleClass="button_style" text="löschen" />
    </children>
 </AnchorPane>

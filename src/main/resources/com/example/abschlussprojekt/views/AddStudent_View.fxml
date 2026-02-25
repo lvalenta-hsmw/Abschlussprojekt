@@ -3,15 +3,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="377.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.AddStudent_Controller">
+<AnchorPane prefHeight="377.0" prefWidth="575.0" style="-fx-background-color: black;" stylesheets="@../css/mainview.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.abschlussprojekt.Controller.AddStudent_Controller">
    <children>
-      <TextField fx:id="vorname_textfield" layoutX="56.0" layoutY="68.0" promptText="vorname" />
-      <Button fx:id="save_button" layoutX="262.0" layoutY="268.0" mnemonicParsing="false" text="save" />
-      <TextField fx:id="nachname_textfield" layoutX="56.0" layoutY="122.0" promptText="nachname" />
-      <TextField fx:id="studiengang_textfield" layoutX="56.0" layoutY="176.0" promptText="studiengang" />
-      <TextField fx:id="fachsemester_textfield" layoutX="302.0" layoutY="68.0" promptText="fachsemester" />
-      <TextField fx:id="matrikelnummer_textfield" layoutX="302.0" layoutY="122.0" promptText="matrikelnummer" />
-      <TextField fx:id="email_textfield" layoutX="302.0" layoutY="176.0" promptText="email" />
+      <HBox alignment="CENTER" layoutX="231.0" layoutY="267.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="save_button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="113.0" style="-fx-background-color: #0F2145;" styleClass="button_style" text="save" />
+         </children>
+      </HBox>
+      <GridPane alignment="CENTER" hgap="60.0" layoutX="56.0" layoutY="68.0" prefHeight="162.0" prefWidth="473.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="68.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="nachname_textfield" promptText="nachname" styleClass="search_Textfield" GridPane.hgrow="NEVER" GridPane.rowIndex="1" />
+            <TextField fx:id="studiengang_textfield" promptText="studiengang" styleClass="search_Textfield" GridPane.rowIndex="2" />
+            <TextField fx:id="fachsemester_textfield" promptText="fachsemester" styleClass="search_Textfield" GridPane.columnIndex="1" />
+            <TextField fx:id="matrikelnummer_textfield" promptText="matrikelnummer" styleClass="search_Textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="email_textfield" promptText="email" styleClass="search_Textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="vorname_textfield" promptText="vorname" styleClass="search_Textfield" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
