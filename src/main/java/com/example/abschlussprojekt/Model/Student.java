@@ -23,11 +23,12 @@ public class Student {
 
 
 
+
     //Übersichtsheitshalber aufgesplittete Observable List die Dank Exstractor auch auf Propertyänderungen reagiert -->readme Extraktor
     ObservableList<Prüfungsleistung> oberservableListe =
             FXCollections.observableArrayList(
                     pl -> new Observable[]{
-                            pl.getDatumProperty(), pl.getFachProperty(), pl.getNoteProperty() }
+                            pl.getDatumProperty(), pl.getFachProperty(), pl.getNoteProperty(), pl.getVersuchProperty() }
             );
 
     private final ListProperty<Prüfungsleistung> prüfungsleistungen= new SimpleListProperty<>(oberservableListe);
@@ -42,6 +43,7 @@ public class Student {
         this.studiengang.set(studiengang);
         this.fachsemester.set(fachsemester);
         this.email.set(email);
+
         //Dummy Prüfungsleistung die jeder Student hat
         prüfungsleistungen.add(new Prüfungsleistung("Math",2.0, LocalDate.of(2024, 6, 15)));
 
@@ -136,6 +138,7 @@ public class Student {
     public double getDurchschnitt() {
         return durchschnitt.get();
     }
+
 
     public void addPrüfungsleistung(Prüfungsleistung prüfungsleistung){
         prüfungsleistungen.add(prüfungsleistung);

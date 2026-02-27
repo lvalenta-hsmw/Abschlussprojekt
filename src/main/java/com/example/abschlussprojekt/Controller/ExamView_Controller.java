@@ -6,6 +6,7 @@ import com.example.abschlussprojekt.ViewModel.ExamView_ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -22,9 +23,11 @@ public class ExamView_Controller {
     @FXML
     private TableColumn<Prüfungsleistung, LocalDate> datum;
     @FXML
+    private TableColumn<Prüfungsleistung, Integer> versuch;
+    @FXML
     private Button change_Prüfungsleistung, add_Prüfungsleistung, delete_Prüfungsleistung;
     @FXML
-    private TextField PLFach_Textfield_change, PLNote_Textfield_change, PLFach_Textfield_add, PLNote_Textfield_add;
+    private TextField PLFach_Textfield_change, PLNote_Textfield_change, PLFach_Textfield_add, PLNote_Textfield_add, PLVersuch_Textfield_change;
     @FXML
     private DatePicker PLDatum_Textfield_change, PLDatum_Textfield_add;
 
@@ -41,12 +44,12 @@ public class ExamView_Controller {
         //cellData ist dabei vom in den Generics angegebenen Typ (Prüfungslesitung) und vom entsprechend angegebenen Datentyp
 
         fach.setCellValueFactory(
-                cellData -> cellData.getValue().getFachProperty()
-        );
+                cellData -> cellData.getValue().getFachProperty());
         //Generics stimmen nicht überein
         //TableColumn erwartet ObservableValue<Double> aber .getNoteProperty liefert ObservableValue<Numbers> --> .asObject wandelt um in ObservableValue<Double>
         note.setCellValueFactory(celldata ->celldata.getValue().getNoteProperty().asObject());
         datum.setCellValueFactory(cellData ->cellData.getValue().getDatumProperty());
+        versuch.setCellValueFactory(cellData->cellData.getValue().getVersuchProperty().asObject());
     }
 
 
@@ -68,6 +71,10 @@ public class ExamView_Controller {
         //Observables passen nicht zusammen --> .asObject
         formater.valueProperty().bindBidirectional(viewmodel.note_changeProperty().asObject());
 
+        TextFormatter<Integer> formater_integer = new TextFormatter<>(new IntegerStringConverter());
+        PLVersuch_Textfield_change.setTextFormatter(formater_integer);
+        formater_integer.valueProperty().bindBidirectional(viewmodel.versuch_changeProperty().asObject());
+
         //Textfield Bindings Add
 
         PLDatum_Textfield_add.valueProperty().bindBidirectional(viewmodel.datum_addProperty());
@@ -84,7 +91,23 @@ public class ExamView_Controller {
 
         //Buttons
         change_Prüfungsleistung.disableProperty().bind(viewModel.alles_change_okayProperty().not());
-        change_Prüfungsleistung.setOnAction(e->viewModel.commit_change());
+        change_Prüfungsleistung.setOnAction(e->{
+            if(viewmodel.requieres_versuch_confirmation()){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Bestätigung");
+                alert.setHeaderText("Versuch verkleinern");
+                alert.setContentText("Sind sie sicher das sie den Versuch herabsetzten wollen?");
+                Optional<ButtonType> result = alert.showAndWait();
+                //Ergebniss auswerten und wenn positiv Prüfungsleistung löschen lassen
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    viewModel.commit_change();
+                }
+
+            }
+            else {
+                viewmodel.commit_change();
+            }
+        });
 
         add_Prüfungsleistung.disableProperty().bind(viewmodel.alles_add_okayProperty().not());
         add_Prüfungsleistung.setOnAction(e->viewModel.commit_add());

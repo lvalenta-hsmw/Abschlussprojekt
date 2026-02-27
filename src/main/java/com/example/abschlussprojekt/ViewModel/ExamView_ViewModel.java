@@ -18,7 +18,7 @@ public class ExamView_ViewModel {
 
     private Studentrepository repository;
 
-    private final BooleanBinding fach_change_okay, datum_change_okay, note_change_okay, alles_change_okay;
+    private final BooleanBinding fach_change_okay, datum_change_okay, note_change_okay,versuch_change_okay, alles_change_okay;
     private final BooleanBinding fach_add_okay, datum_add_okay, note_add_okay, alles_add_okay;
 
 
@@ -26,6 +26,7 @@ public class ExamView_ViewModel {
     private StringProperty fach_change =new SimpleStringProperty();
     private ObjectProperty<LocalDate> datum_change = new SimpleObjectProperty<>();
     private DoubleProperty note_change = new SimpleDoubleProperty();
+    private IntegerProperty versuch_change = new SimpleIntegerProperty();
     //Drawfields Add
     private StringProperty fach_add =new SimpleStringProperty();
     private ObjectProperty<LocalDate> datum_add = new SimpleObjectProperty<>();
@@ -65,7 +66,8 @@ public class ExamView_ViewModel {
         fach_change_okay = fach_change.isNotEmpty();
         datum_change_okay = datum_change.isNotNull();
         note_change_okay = note_change.greaterThanOrEqualTo(1.0).and(note_change.lessThanOrEqualTo(5.0));
-        alles_change_okay = fach_change_okay.and(datum_change_okay).and(note_change_okay);
+        versuch_change_okay = versuch_change.greaterThanOrEqualTo(1).and(versuch_change.lessThanOrEqualTo(3));
+        alles_change_okay = fach_change_okay.and(datum_change_okay).and(note_change_okay).and(versuch_change_okay);
 
         fach_add_okay = fach_add.isNotEmpty();
         datum_add_okay = datum_add.isNotNull();
@@ -80,6 +82,7 @@ public class ExamView_ViewModel {
         datum_change.set(selectedPrüfungsleistung.getDatum());
         note_change.set(selectedPrüfungsleistung.getNote());
         fach_change.set(selectedPrüfungsleistung.getFach());
+        versuch_change.set(selectedPrüfungsleistung.getVersuch());
         }
         else {                      //Felder müssen zurückgesetzt werden denn beim Wechsel des Studenten in der Mainview ist danach kein Student selektiert und die alten Werte werden nicht überschrieben
             clearfield();
@@ -90,6 +93,7 @@ public class ExamView_ViewModel {
         datum_change.set(null);
         note_change.set(0.0);            //Default Wert 0 denn sosnt hätte man ObjectProperty <Double> nutzen müssen um note.set(null) ausführen zu können --> Hier wird mit Noten gerechnet daher sollen Sie immer ein Wert haben.
         fach_change.set("");
+        versuch_change.set(0);
     }
 
 
@@ -100,6 +104,8 @@ public class ExamView_ViewModel {
         selectedPrüfungsleistung.get().setDatum(datum_change.get());
         selectedPrüfungsleistung.get().setFach(fach_change.get());
         selectedPrüfungsleistung.get().setNote(note_change.get());
+        selectedPrüfungsleistung.get().setVersuch(versuch_change.get());
+
 
     }
 
@@ -147,6 +153,10 @@ public class ExamView_ViewModel {
         return fach_change;
     }
 
+    public IntegerProperty versuch_changeProperty(){
+        return versuch_change;
+    }
+
     public BooleanBinding alles_change_okayProperty(){
         return alles_change_okay;
 
@@ -172,5 +182,12 @@ public class ExamView_ViewModel {
     }
 
 
-
+    public boolean requieres_versuch_confirmation() {
+        if(versuch_change.get() >= selectedPrüfungsleistung.get().getVersuch()){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }

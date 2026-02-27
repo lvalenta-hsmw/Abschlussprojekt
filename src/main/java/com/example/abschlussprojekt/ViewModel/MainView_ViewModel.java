@@ -31,6 +31,7 @@ public class MainView_ViewModel {
     private StringProperty durchschnitt = new SimpleStringProperty();
 
 
+
     public MainView_ViewModel(Studentrepository repository) {
         this.repository = repository;
         filteredList= new FilteredList<>(repository.getStudentlist(), s -> true);

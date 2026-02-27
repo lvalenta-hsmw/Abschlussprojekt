@@ -109,7 +109,7 @@ public class Context {
             ExamView_Controller controller = loader.getController();
             controller.setParams(viewModel, this);
 
-            Scene scene = new Scene(root, 600, 600);
+            Scene scene = new Scene(root, 600, 634);
             examstage = new Stage();
             examstage.setResizable(false);
             examstage.setTitle("Exam  View");
