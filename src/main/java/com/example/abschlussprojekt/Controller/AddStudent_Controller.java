@@ -6,6 +6,23 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller für AddStudent
+ *
+ * Verwaltet die Bindungen zwischen den TextFields der View und dem ViewModel.
+ * Überprüft die Eingaben automatisch über die
+ * BooleanBindings des ViewModels und aktiviert/deaktiviert den commit-Button. -->Logik für BooleanBindings im ViewModel.
+ *
+ * Aufbau:
+ * - TextFields: vorname, nachname, studiengang, fachsemester, matrikelnummer, email
+ * - Button: save_button, reagiert nur, wenn alle Eingaben gültig sind
+ *
+ * Logik:
+ * - setParams(AddStudent_ViewModel viewModel, Context context) --> Initialisiert die Bindungen zwischen View und ViewModel und setzt
+ *   Event-Handler für den save-Button.
+ *   Konstruktor leer, weil Controller nur leer erzeugt werden können auf die herkömmliche Weiße.
+ */
+
 public class AddStudent_Controller {
 
     @FXML
@@ -16,7 +33,15 @@ public class AddStudent_Controller {
 
     private AddStudent_ViewModel viewModel;
 
-    //Übergabe nur durch Setter möglich, weil Konstruktor leer erstellt wird
+
+
+    /**
+     * Binden der Eingabefelder an Propertys aus dem Viewmodel
+     * Klick Listener für Buttons
+     * Disable Propert für Buttons
+     * @param viewModel = Property Injection des Viewmodel und des Context über Methode
+     * @param context = Property Injection des Viewmodel und des Context über Methode
+     */
     public void setParams(AddStudent_ViewModel viewModel, Context context){
         this.viewModel = viewModel;
 

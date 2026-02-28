@@ -10,6 +10,32 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
+/**
+ * ViewModel für die MainView der Studentenverwaltung
+ *
+ *  ViewModel zuständig für die gesamte Logik zur Anzeige, Filterung und Auswahl
+ * von Studenten in der MainView.
+ * Es stellt bindbare Properties für die Suchfelder bereit.
+ *
+ * Aufbau:
+ * - repository: Das zugrundeliegende Datenmodell mit allen Studenten.
+ * - filteredList: FilteredList<Student> wird als Quelle für die TableView bereit gestellt und
+ * ändert ihr Predicate (Filter) automatisch, abhängig von den Suchfeldern.
+ * - selectedStudent: Aktuell ausgewählter Student in der TableView.
+ *
+ * Filter:
+ * - Bindet die PredicateProperty der FilteredList an die Eingabefelder (vorname,
+ *   nachname, studiengang, fachsemester, matrikelnummer, email, durchschnitt).
+ * - sobald sich eines der Textfeld Propertys ändert, wird das Predicate neu berechnet und die filtered List auch.
+ *
+ *
+ * Funktionen:
+ * - getStudentlist(): liefert die komplette ObservableList der Studenten.
+ * - getfilterdStudentlist(): liefert die gefilterte ObservableList für die TableView.
+ * - delete_student(): entfernt den aktuell ausgewählten Studenten aus dem Repository.
+ *
+ */
+
 public class MainView_ViewModel {
 
     private final Studentrepository repository;
@@ -31,7 +57,11 @@ public class MainView_ViewModel {
     private StringProperty durchschnitt = new SimpleStringProperty();
 
 
-
+    /**
+     * Anlegen einer FilteredList<Student>, welche reaktiv an die Studentenliste aus dem Repository gebunden ist.
+     * filtern der Liste nach reaktiven an Stringpropertys gebundene Filterkriterien
+     * @param repository = Injektion der Instanz des Studentenrepositorys aus dem Context
+     */
     public MainView_ViewModel(Studentrepository repository) {
         this.repository = repository;
         filteredList= new FilteredList<>(repository.getStudentlist(), s -> true);
@@ -48,7 +78,7 @@ public class MainView_ViewModel {
                             boolean matchFachsemester = fachsemester.get() == null || fachsemester.get().isEmpty()
                                     || student.getFachsemester().toLowerCase().contains(fachsemester.get().toLowerCase());
                             boolean matchMatrikelnummer = matrikelnummer.get() == null || matrikelnummer.get().isEmpty()
-                                    || student.get_matrikelnummer().toLowerCase().contains(matrikelnummer.get().toLowerCase());
+                                    || student.get_Matrikelnummer().toLowerCase().contains(matrikelnummer.get().toLowerCase());
                             boolean matchEmail = email.get() == null || email.get().isEmpty()
                                     || student.getEmail().toLowerCase().contains(email.get().toLowerCase());
                             boolean matchDurchschnitt = durchschnitt.get() == null || durchschnitt.get().isEmpty()
@@ -59,9 +89,15 @@ public class MainView_ViewModel {
                 vorname, nachname, studiengang, fachsemester, matrikelnummer,email , durchschnitt // Abhängigkeiten
         ));
 
-
-
     }
+
+    /**
+     * löscht Student aus dem Repository
+     */
+    public void delete_student() {
+        repository.remove_student(selectedStudent.get());
+    }
+
 
     public ObservableList<Student> getStudentlist() {
         return repository.getStudentlist();
@@ -76,6 +112,11 @@ public class MainView_ViewModel {
     }
 
     //Getter
+
+    /**
+     *
+     * Getter für Propertys die Such / Filter Kriterien wiederspiegeln
+     */
     public StringProperty vornameProperty() {
         return vorname;
     }
@@ -103,9 +144,5 @@ public class MainView_ViewModel {
     public StringProperty durchschnittProperty(){return durchschnitt;}
 
 
-    public void delete_student() {
 
-        repository.remove_student(selectedStudent.get());
-
-    }
 }

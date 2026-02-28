@@ -37,7 +37,9 @@ public class ExamView_Controller {
     private ExamView_ViewModel viewModel;
     private Context context;
 
-
+    /**
+     * Initialisierung der TableView Columns bzw Rows durch CellValueFactory und reaktive Bindung an Propertys
+     */
     @FXML
     private void initialize(){
 
@@ -54,8 +56,13 @@ public class ExamView_Controller {
     }
 
 
-
-
+    /**
+     * Binding der Change + Add Eingabefelder + Tableview mit Viewmodel
+     * Buttons erhalten Klick Listener + Alert Handling
+     * Disable Property für Buttons
+     * @param viewmodel = Property Injection des Viewmodel und des Context über Methode
+     * @param context = zentrale Context Instant zur Fensterverwaltung (siehe Context)
+     */
     public void setParams (ExamView_ViewModel viewmodel, Context context){
         this.viewModel = viewmodel;
         this.context = context;
@@ -128,12 +135,6 @@ public class ExamView_Controller {
                 viewModel.deletePrüfungsleistung();
             }
         });
-
-
-
-
-
-
 
 
     }

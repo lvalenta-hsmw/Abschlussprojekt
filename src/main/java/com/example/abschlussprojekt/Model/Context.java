@@ -16,12 +16,33 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Zentrale Verwaltungs und Koordinationsinstanz
+ *
+ * Die Context-Klasse fungiert als Single Source of Truth und übernimmt die Orchestrierung der Views.
+ * Sie verwaltet das aktuell ausgewählte Student-Objekt aus der MainView TableView, sowie das Öffnen und Schließen
+ * von Stage-Instanzen.
+ *
+ * Durch die zentrale Bereitstellung gemeinsamer Properties wird sichergestellt,
+ * dass alle ViewModels auf den gleichen Anwendungszustand zugreifen.
+ *
+ * Außerdem übergibt Sie Abhängigkeiten über den Konstruktor
+ *
+ */
+
+
 public class Context {
     private final Studentrepository repository = new Studentrepository();   //Erstellen der einzigen Instanz des Respositorys
     private MainView_ViewModel main_viewModel;
     private Stage examstage, addStudentstage, changeStudentstage;
 
-
+    /**
+     *erstellt Repository Instanz
+     *fügt Dummy Student hinzu
+     * startet MainView + Controller
+     * @param stage
+     * @throws IOException wenn Loader die Ressource nicht findet
+     */
     public void start(Stage stage) throws IOException {
 
         //Initialisierung eines Dummy Students
@@ -47,6 +68,10 @@ public class Context {
         stage.show();
     }
 
+    /**
+     * Öffnet und initialisiert Fenster zum hinzufügen eines neuen Studenten
+     * @throws IOException wenn Ressource nicht geladen werden kann
+     */
     public void openAddStudentWindow() throws IOException {
         //Überprüfen ob Fenster schon existiert
         if(addStudentstage == null){
@@ -74,6 +99,10 @@ public class Context {
 
     }
 
+    /**
+     * Öffnet und initialisiert Fenster zum Verändern eines ausgewählten Studenten
+     * @throws IOException wenn Ressource nicht geladen werden kann
+     */
     public void openChangeStudentWindow() throws IOException {
         //siehe openAddStudentWindow
         if (changeStudentstage == null){
@@ -100,6 +129,10 @@ public class Context {
 
     }
 
+    /**
+     * öffnet und initialisiert Fenster zur Notenübersicht für den ausgewählten Studenten
+     * @throws IOException wenn Ressource nicht geladen werden kann
+     */
     public void openExamViewWindow() throws IOException {
         //siehe openAddStudentWindow
         if (examstage == null ){
@@ -127,10 +160,5 @@ public class Context {
 
 
     }
-
-    public void closeExanViewWindow(){
-
-    }
-
 
 }

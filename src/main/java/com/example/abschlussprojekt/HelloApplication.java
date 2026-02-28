@@ -13,6 +13,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Startpunkt der Anwendung.
+ *
+ * Diese Klasse startet die JavaFX-Anwendung + initialisiert die Context-Klasse
+ *
+ * Start:
+ * 1. Erstellung der Context-Instanz
+ * 2. Start der MainView über den Context
+ */
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

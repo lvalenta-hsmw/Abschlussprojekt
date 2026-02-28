@@ -2,13 +2,24 @@ package com.example.abschlussprojekt.Model;
 
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
-import java.util.Objects;
+
+/**
+ * Modellklasse zur Repräsentation eines Studenten.
+ *
+ * Ein Student besitzt personenbezogene Daten (Vorname, Nachname, Studiengang, Fachsemester, Matrikelnummer, Email, Durchschnitt), sowie eine
+ * Liste von Prüfungsleistungen. Die Prüfungsleistungen werden
+ * als ObservableList verwaltet und über ein ListProperty bindbar gemacht.
+ *
+ * Der Durchschnitt der Noten wird reaktiv berechnet und
+ * über ein bindbares readonl Property bereitgestellt.
+ *
+ * Es handelt sich um eine Model Klasse
+ */
 
 public class Student {
 
@@ -34,8 +45,16 @@ public class Student {
     private final ListProperty<Prüfungsleistung> prüfungsleistungen= new SimpleListProperty<>(oberservableListe);
 
 
-
-
+    /**
+     * Student bekommt Dummy Prüfungsleistung
+     * Durchschnitt wird per reaktivem Binding errechnet
+     * @param vor_name
+     * @param nach_name
+     * @param studiengang
+     * @param fachsemester
+     * @param matrikelnummer
+     * @param email
+     */
     public Student(String vor_name, String nach_name, String studiengang, String fachsemester, String matrikelnummer, String email ) {
         this.vor_name.set(vor_name);
         this.nach_name.set(nach_name);
@@ -77,15 +96,19 @@ public class Student {
 
     //getter
 
+    /**
+     * Getter Methoden für Propertys des Studenten und dazugehörigen Werten für simple Eigenschaften
+     *
+     */
     public String getVor_name(){
         return vor_name.get();
     }
 
-    public StringProperty getVorname_property(){
+    public StringProperty Vorname_property(){
         return vor_name;
     }
 
-    public String get_matrikelnummer(){
+    public String get_Matrikelnummer(){
         return matrikelnummer.get();
     }
 
@@ -97,7 +120,7 @@ public class Student {
         return nach_name.get();
     }
 
-    public StringProperty nach_nameProperty() {
+    public StringProperty Nach_nameProperty() {
         return nach_name;
     }
 
@@ -105,7 +128,7 @@ public class Student {
         return studiengang.get();
     }
 
-    public StringProperty studiengangProperty() {
+    public StringProperty StudiengangProperty() {
         return studiengang;
     }
 
@@ -113,7 +136,7 @@ public class Student {
         return fachsemester.get();
     }
 
-    public StringProperty fachsemesterProperty() {
+    public StringProperty FachsemesterProperty() {
         return fachsemester;
     }
 
@@ -121,10 +144,14 @@ public class Student {
         return email.get();
     }
 
-    public StringProperty emailProperty() {
+    public StringProperty EmailProperty() {
         return email;
     }
 
+    /**
+     * Getter Methoden für Prüfungsleistung und Durchschnitt
+     *
+     */
     //Prüfungsleistung
     public ListProperty<Prüfungsleistung> getPrüfungsleistungsProperty(){
         return prüfungsleistungen;
@@ -139,16 +166,28 @@ public class Student {
         return durchschnitt.get();
     }
 
-
+    /**
+     *
+     * @param prüfungsleistung = Objekt vom Typ Prüfungsleistung
+     */
     public void addPrüfungsleistung(Prüfungsleistung prüfungsleistung){
         prüfungsleistungen.add(prüfungsleistung);
     }
+
+    /**
+     *
+     * @param prüfungsleistung = Objekt vom Typ Prüfungsleistung
+     */
     public void deletePrüfungsleistung(Prüfungsleistung prüfungsleistung){
         prüfungsleistungen.remove(prüfungsleistung);
     }
 
     //Setter
 
+    /**
+     *
+     * Setter für Werte der Propertys
+     */
     public void setVor_name(String vor_name){
         this.vor_name.set(vor_name);
     }

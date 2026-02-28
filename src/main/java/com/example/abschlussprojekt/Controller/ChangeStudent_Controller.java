@@ -6,6 +6,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller für ChangeStudent
+ *
+ * Verwaltet die Bindungen zwischen den TextFields der View und den Properties
+ * des ChangeStudent_ViewModel.
+ * Überprüft die Eingaben automatisch über die
+ * BooleanBindings des ViewModels und aktiviert/deaktiviert den commit-Button.
+ *
+ * Struktur:
+ * - TextFields: vorname, nachname, studiengang, fachsemester, matrikelnummer, email
+ * - Buttons:
+ *      - save_button: löst Commit-Methode im ViewModel aus.
+ *      - cancel_button: löst Cancel-Methode im ViewModel aus.
+ *
+ */
+
 public class ChangeStudent_Controller {
     @FXML
     private TextField vorname_textfield, nachname_textfield, studiengang_textfield, fachsemester_textfield, matrikelnummer_textfield, email_textfield;
@@ -18,7 +34,13 @@ public class ChangeStudent_Controller {
     private ChangeStudent_ViewModel viewModel;
     private Context context;
 
-
+    /**
+     *Binding der Eingabefelder an Propertys aus dem Viewmodel
+     * Klick Listener für Buttons
+     * Disable Property für Buttons
+     * @param viewModel = Property Injection des Viewmodel und des Context über Methode
+     * @param context = zentrale Context Instant zur Fensterverwaltung (siehe Context)
+     */
     public void setParams(ChangeStudent_ViewModel viewModel, Context context){
         this.viewModel = viewModel;
         this.context = context;

@@ -9,6 +9,35 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * ViewModel für das Ändern eines bestehenden Studenten.
+ *
+ * Nimmt die Eingabedaten für ein Change-Student-Formular auf und stellt
+ * diese als bindbare JavaFX Properties zur Verfügung. Die Properties
+ * entsprechen den aktuellen Eingaben des Benutzers und werden erst beim Commit
+ * übertragen.
+ *
+ * Validierung:
+ * Property hat ein BooleanBinding, das automatisch prüft,
+ * ob die Eingabe gültig ist:
+ * - vorname, nachname, studiengang: nur Buchstaben
+ * - fachsemester, matrikelnummer: nur Zahlen
+ * - email: muss '@' enthalten
+ * -->ähnliche Logik wie in AddStudent_ViewModel
+ *
+ * BooleanBinding alles_okay zeigt an das alle Eingaben sichr sind.
+ * Kann an commit btn gebunden werden
+ *
+ * Logik:
+ * - Properties (StringProperty) werden bidirektional an TextFields gebunden.
+ * - BooleanBindings werden an Buttons gebunden, um automatische
+ *   Aktivierung/Deaktivierung zu steuern.
+ * - commit() schreibt die Änderungen in das ausgewählte Student-Objekt.
+ * - cancel() setzt die Propertys --> Felder auf die aktuellen Werte des Studenten zurück.
+ *
+ *
+ */
+
 public class ChangeStudent_ViewModel {
 
 
@@ -25,15 +54,22 @@ public class ChangeStudent_ViewModel {
 
     private final BooleanBinding vorname_okay, nachname_okay, studiengang_okay, fachsemester_okay, matrikelnummer_okay, email_okay, alles_okay;
 
+    /**
+     *
+     * @param repository = Injektion der Instanz des Studentenrepositorys aus dem Context
+     * @param studentSimpleObjectProperty = ObjektProperty, welches reaktiv den in der MainView ausgewählten Studenten wiederspiegelt
+     */
     public ChangeStudent_ViewModel(Studentrepository repository, ObjectProperty<Student> studentSimpleObjectProperty) {
 
         //Binden des übergebenen ObjectProperty (aktiv ausgwählter Student aus der Tabelle) --> in der Klasse verfügbar machen
         this.student.bind(studentSimpleObjectProperty);
         drawfield(student.get());       //Initialisierung der Felder beim Start --> sonst leer
         //Listener der den ausgewählten Studenten überwacht
+
         this.student.addListener((obs, oldStudent, newStudent) -> {
             //neuer Student kann null werden --> Exception
             if (newStudent != null) {
+
                 drawfield(newStudent);      //Felder füllen
             }
             else {
@@ -42,7 +78,9 @@ public class ChangeStudent_ViewModel {
         });
 
 
-
+        /**
+         * BooleanBindings zur Validierung der Eingabe Eingaben in den gespiegelten Textfeldern aus dem Controller / View
+         */
         //Boolean Bindings --> siehe AddStudent Viewmodel
         vorname_okay = Bindings.createBooleanBinding(
                 () -> vorname.get() != null && vorname.get().matches("[a-zA-Z]+"),
@@ -86,7 +124,10 @@ public class ChangeStudent_ViewModel {
     }
 
 
-
+    /**
+     * Getter für BooleanBindings
+     * Hinweiß: noch ungenutzt, aber für individuelle Eingabefeldkontrolle angedacht
+     */
     public BooleanBinding vorname_okayProperty() {
         return vorname_okay;
     }
@@ -115,7 +156,10 @@ public class ChangeStudent_ViewModel {
         return alles_okay;
     }
 
-
+    /**
+     *
+     * Getter für Propertys  --> Bindung an Eingabefelder
+     */
     public StringProperty vornameProperty() {
         return vorname;
     }
@@ -141,16 +185,26 @@ public class ChangeStudent_ViewModel {
     }
 
     //Propertys setzen aus dem neuen Studenten
+
+    /**
+     * füllt die StringPropertys mit Daten des neuen Studenten, damit sich die View aktualisiert
+     * @param newStudent = vom Listener (ausgewählter Student MainView) übergebener Parameter vom Typ Student
+     */
     private void drawfield(Student newStudent){
         vorname.set(newStudent.getVor_name());
         nachname.set(newStudent.getNach_name());
         studiengang.set(newStudent.getStudiengang());
         fachsemester.set(newStudent.getFachsemester());
-        matrikelnummer.set(newStudent.get_matrikelnummer());
+        matrikelnummer.set(newStudent.get_Matrikelnummer());
         email.set(newStudent.getEmail());
     }
 
     //Änderungen bestätigen
+
+    /**
+     * Ändert Eigenschaften des ausgewählten Studenten.
+     * Änderung wird in das Modell übernommen.
+     */
     public void commit (){
         if (!alles_okay.get()){
             return;
@@ -164,6 +218,10 @@ public class ChangeStudent_ViewModel {
 
     }
 
+    /**
+     * Wiederherstellen der ursprünglichen Daten des Studenten.
+     * Zurücksetzen der Felder auf Ausweichwerte, wenn kein Student ausgewählt ist.
+     */
     public void cancel() {
         //Student kann gelöscht werden = null
         if (!student.isNull().get()) {
@@ -171,7 +229,7 @@ public class ChangeStudent_ViewModel {
             nachname.set(student.get().getNach_name());
             studiengang.set(student.get().getStudiengang());
             fachsemester.set(student.get().getFachsemester());
-            matrikelnummer.set(student.get().get_matrikelnummer());
+            matrikelnummer.set(student.get().get_Matrikelnummer());
             email.set(student.get().getEmail());
         } else {
             vorname.set(null);      //nullen der Felder, wenn kein Student ausgewählt ist

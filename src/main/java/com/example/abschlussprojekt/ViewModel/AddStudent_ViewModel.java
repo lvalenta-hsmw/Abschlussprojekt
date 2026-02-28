@@ -7,6 +7,30 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * ViewModel für die Hinzufügung von Studenten.
+ *
+ * Enthält die Eingabedaten für das Add-Student-Formular und stellt
+ * diese als bindbare JavaFX Properties zur Verfügung. Die Properties
+ * spiegeln die aktuellen Eingaben des Benutzers wider, werden aber erst beim Commit in das Modell übertragen
+ *
+ * Validierung:
+ * Für jede Property existiert ein BooleanBinding, das automatisch
+ * prüft, ob die Eingabe korrekt ist:
+ * - vorname, nachname, studiengang: nur Buchstaben
+ * - fachsemester, matrikelnummer: nur Zahlen
+ * - email: muss '@' enthalten
+ *
+ * Ein kombinierter BooleanBinding 'alles_okay' zeigt an, ob alle
+ * Eingaben gültig sind und stellt Getter dafür bereit
+ *
+ * Logik dahinter:
+ * - Properties (StringProperty) werden bidirektional an TextFields gebunden.
+ * - BooleanBindings werden an Buttons gebunden, um automatische
+ *   Aktivierung/Deaktivierung zu steuern.
+ * - commit() erzeugt einen neuen Studenten und fügt ihn dem Repository hinzu,
+ *   anschließend werden die Eingaben zurückgesetzt.
+ */
 public class AddStudent_ViewModel {
 
     private final Studentrepository repository;
@@ -21,7 +45,12 @@ public class AddStudent_ViewModel {
     private final BooleanBinding vorname_okay, nachname_okay, studiengang_okay, fachsemester_okay, matrikelnummer_okay, email_okay, alles_okay;
 
 
-
+    /**
+     * Konstruktor
+     * Anlegen von BooleanBindings zur Validierung der Propertys
+     *
+     * @param repository = Injektion der Instanz des Studentenrepositorys aus dem Context
+     */
     public AddStudent_ViewModel(Studentrepository repository) {
         this.repository = repository;
 
@@ -67,6 +96,8 @@ public class AddStudent_ViewModel {
 
 
     }
+
+
     //BooleanBindings um disable Property reaktiv zu de/aktivieren
     public BooleanBinding vorname_okayProperty() {
         return vorname_okay;
@@ -123,9 +154,10 @@ public class AddStudent_ViewModel {
     }
 
 
-
-
-    //Hinzufügen des neuen Studenten zum Modell --> löst View Aktualierung automatisch aus, da sich repository ändert
+    /**
+     * Hinzufügen des neuen Studenten zum Model --> Aufruf aus Controller
+     */
+    //Hinzufügen des neuen Studenten zum Modell --> löst View Aktualierung automatisch aus, da sich Repository ändert
     public void commit (){
 
         Student s = new Student(vorname.get(), nachname.get(),studiengang.get(),fachsemester.get(),matrikelnummer.get(),email.get()); //Erzeugen neuer Student
