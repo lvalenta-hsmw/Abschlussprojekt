@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -63,17 +64,18 @@ public class ExamView_Controller {
         PLDatum_Textfield_change.valueProperty().bindBidirectional(viewmodel.datum_changeProperty());
         PLFach_Textfield_change.textProperty().bindBidirectional(viewmodel.fach_changeProperty());
         //Textfield liefert String --> muss in Double umgewandelt werden
-        TextFormatter<Double> formater = new TextFormatter<>(new DoubleStringConverter());
+        TextFormatter<Number> formater = new TextFormatter<>(new NumberStringConverter());
         //Textfield wird Formatter gesetzt
         PLNote_Textfield_change.setTextFormatter(formater);
         //formater liefert bindbares Property was an ViewModel gebunden werden kann
         //--> besser als Listener + parseDouble (nicht mehr reaktiv als Property)
-        //Observables passen nicht zusammen --> .asObject
-        formater.valueProperty().bindBidirectional(viewmodel.note_changeProperty().asObject());
 
-        TextFormatter<Integer> formater_integer = new TextFormatter<>(new IntegerStringConverter());
+        formater.valueProperty().bindBidirectional(viewmodel.note_changeProperty());
+
+
+        TextFormatter<Number> formater_integer = new TextFormatter<>(new NumberStringConverter());
         PLVersuch_Textfield_change.setTextFormatter(formater_integer);
-        formater_integer.valueProperty().bindBidirectional(viewmodel.versuch_changeProperty().asObject());
+        formater_integer.valueProperty().bindBidirectional(viewmodel.versuch_changeProperty());
 
         //Textfield Bindings Add
 

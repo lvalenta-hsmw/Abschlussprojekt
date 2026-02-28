@@ -77,12 +77,12 @@ public class ExamView_ViewModel {
 
     }
 
-    private void drawfield(Prüfungsleistung selectedPrüfungsleistung) {
-        if (selectedPrüfungsleistung != null){
-        datum_change.set(selectedPrüfungsleistung.getDatum());
-        note_change.set(selectedPrüfungsleistung.getNote());
-        fach_change.set(selectedPrüfungsleistung.getFach());
-        versuch_change.set(selectedPrüfungsleistung.getVersuch());
+    private void drawfield(Prüfungsleistung newPrüfungsleistung) {
+        if (newPrüfungsleistung != null){
+        datum_change.set(newPrüfungsleistung.getDatum());
+        note_change.set(newPrüfungsleistung.getNote());
+        fach_change.set(newPrüfungsleistung.getFach());
+        versuch_change.set(newPrüfungsleistung.getVersuch());
         }
         else {                      //Felder müssen zurückgesetzt werden denn beim Wechsel des Studenten in der Mainview ist danach kein Student selektiert und die alten Werte werden nicht überschrieben
             clearfield();
@@ -91,9 +91,9 @@ public class ExamView_ViewModel {
 
     private void clearfield(){
         datum_change.set(null);
-        note_change.set(0.0);            //Default Wert 0 denn sosnt hätte man ObjectProperty <Double> nutzen müssen um note.set(null) ausführen zu können --> Hier wird mit Noten gerechnet daher sollen Sie immer ein Wert haben.
+        note_change.set(0);            //Default Wert 0 denn sosnt hätte man ObjectProperty <Double> nutzen müssen um note.set(null) ausführen zu können --> Hier wird mit Noten gerechnet daher sollen Sie immer ein Wert haben.
         fach_change.set("");
-        versuch_change.set(0);
+        //versuch_change.set(0);
     }
 
 

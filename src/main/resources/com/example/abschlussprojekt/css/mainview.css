@@ -26,21 +26,16 @@
 }
 
 .table-view {
-    -fx-background-color: -backgroundcolor3;
+
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 
 }
 
-.column-header-background .column-header-background{
-    -fx-background-color: -backgroundcolor3;
+.menu-bar {
+    -fx-background-color: -backgroundcolor2;
 }
 
-.column-header-background .column-header-background .label {
-    -fx-text-fill: -textcolor1;
+.menu-bar .label {
+    -fx-text-fill: white;
 }
-
-.column-header {
-    -fx-border-color: white;
-}
-
