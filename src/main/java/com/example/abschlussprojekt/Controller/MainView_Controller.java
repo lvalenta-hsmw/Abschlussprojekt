@@ -39,7 +39,6 @@ import java.util.Optional;
  * - setParams(MainView_ViewModel viewModel, Context context): bindet View und ViewModel,
  *   richtet Event-Handler für Buttons ein
  */
-
 public class MainView_Controller {
 
     @FXML
@@ -59,7 +58,7 @@ public class MainView_Controller {
 
 
     /**
-     * Initialiserung des Table Columns
+     * Initialisierung der Table Columns
      */
     @FXML
     private void initialize() {

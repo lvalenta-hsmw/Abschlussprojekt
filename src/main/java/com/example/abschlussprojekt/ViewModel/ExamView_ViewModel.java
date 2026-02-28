@@ -47,7 +47,6 @@ import java.time.LocalDate;
  *
  *
  */
-
 public class ExamView_ViewModel {
 
     private ObjectProperty<Student> student_mainview = new SimpleObjectProperty<Student>();

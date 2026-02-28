@@ -20,7 +20,6 @@ import java.time.LocalDate;
  *
  * Es handelt sich um eine Model Klasse
  */
-
 public class Student {
 
     //Eigenschaften des Student Objekt als Property um Bindung zu ermöglichen
@@ -70,7 +69,7 @@ public class Student {
         ()-> = keine Parameter
         {...} = Berechnung des Durchschnittes
                 - empty Fall abdecken (return 0.0)
-                - .stream = Pipelineverarbetung
+                - .stream = Pipelineverarbeitung
                 - .maptoDouble (wandelt jeden Streameintrag in double Wert) --> DoubleStream ("Liste" aus den Noten)
                 - .average = Durchschnitt
                 - orElse = OptionalDouble könnte leer sein --> Auffangfall = 0.0

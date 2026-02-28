@@ -66,11 +66,18 @@ public class MainView_ViewModel {
         this.repository = repository;
         filteredList= new FilteredList<>(repository.getStudentlist(), s -> true);
 
+        /*
+        äußere Lambda: keine Parameter, wird einmal je Änderung des Bindings aufgerufen, liefert das aktuelle Prädikat
+        innere Lambda: nimmt Parameter (student) vom Typ zu dem die filtered List angelegt wurde
+                       wird für jeden Studenten aufgerufen, true = anzeigen, false = verwerfen
+
+         */
+
         //Filtert List
         filteredList.predicateProperty().bind(Bindings.createObjectBinding(() ->
                         student -> {
-                            boolean matchVorname = vorname.get() == null || vorname.get().isEmpty()
-                                    || student.getVor_name().toLowerCase().contains(vorname.get().toLowerCase());
+                            boolean matchVorname = vorname.get() == null || vorname.get().isEmpty()                 //wenn Suchfeld leer --> jeder Student passt
+                                    || student.getVor_name().toLowerCase().contains(vorname.get().toLowerCase());   //case sensitiv überprüfen ob der Name des Studenten den Text aus dem Suchfeld enthält
                             boolean matchNachname = nachname.get() == null || nachname.get().isEmpty()
                                     || student.getNach_name().toLowerCase().contains(nachname.get().toLowerCase());
                             boolean matchStudiengang = studiengang.get() == null || studiengang.get().isEmpty()

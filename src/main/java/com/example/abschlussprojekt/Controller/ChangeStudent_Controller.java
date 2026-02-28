@@ -21,7 +21,6 @@ import javafx.scene.control.TextField;
  *      - cancel_button: löst Cancel-Methode im ViewModel aus.
  *
  */
-
 public class ChangeStudent_Controller {
     @FXML
     private TextField vorname_textfield, nachname_textfield, studiengang_textfield, fachsemester_textfield, matrikelnummer_textfield, email_textfield;
@@ -32,7 +31,7 @@ public class ChangeStudent_Controller {
 
 
     private ChangeStudent_ViewModel viewModel;
-    private Context context;
+
 
     /**
      *Binding der Eingabefelder an Propertys aus dem Viewmodel
@@ -43,7 +42,7 @@ public class ChangeStudent_Controller {
      */
     public void setParams(ChangeStudent_ViewModel viewModel, Context context){
         this.viewModel = viewModel;
-        this.context = context;
+
 
         //binds --> halten View und ViewModel (bzw Model) synchron
         vorname_textfield.textProperty().bindBidirectional(viewModel.vornameProperty());

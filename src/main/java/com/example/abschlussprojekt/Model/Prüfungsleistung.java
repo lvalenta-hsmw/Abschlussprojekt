@@ -19,7 +19,6 @@ import java.time.LocalDate;
  * geändert.
  *
  */
-
 public class Prüfungsleistung {
     private final StringProperty Fach = new SimpleStringProperty();
     private final DoubleProperty Note = new SimpleDoubleProperty();

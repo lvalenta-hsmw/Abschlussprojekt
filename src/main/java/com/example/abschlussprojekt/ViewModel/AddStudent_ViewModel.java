@@ -157,9 +157,8 @@ public class AddStudent_ViewModel {
     /**
      * Hinzufügen des neuen Studenten zum Model --> Aufruf aus Controller
      */
-    //Hinzufügen des neuen Studenten zum Modell --> löst View Aktualierung automatisch aus, da sich Repository ändert
     public void commit (){
-
+    //Hinzufügen des neuen Studenten zum Modell --> löst View Aktualierung automatisch aus, da sich Repository ändert
         Student s = new Student(vorname.get(), nachname.get(),studiengang.get(),fachsemester.get(),matrikelnummer.get(),email.get()); //Erzeugen neuer Student
         repository.add_student(s);      //hinzufügen des Student zum Repository (aus Konstruktor Injection)
         vorname.set(null);                //zurücksetzten aller Eingabefelder

@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
  *   Event-Handler für den save-Button.
  *   Konstruktor leer, weil Controller nur leer erzeugt werden können auf die herkömmliche Weiße.
  */
-
 public class AddStudent_Controller {
 
     @FXML

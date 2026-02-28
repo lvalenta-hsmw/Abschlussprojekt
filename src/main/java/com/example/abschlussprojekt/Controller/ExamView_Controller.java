@@ -12,6 +12,14 @@ import javafx.util.converter.NumberStringConverter;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * Controller für ExamView
+ *
+ * Bindet die ExamView an das ExamView_ViewModel
+ * Initialisiert die TableView + Eingabefelder
+ * Eingabefelder werden an Propertys aus ViewModel gebunden
+ * TableView zeigt Notenliste des in der MainView ausgewählten Studentens an
+ */
 public class ExamView_Controller {
 
     @FXML
@@ -35,7 +43,7 @@ public class ExamView_Controller {
 
 
     private ExamView_ViewModel viewModel;
-    private Context context;
+
 
     /**
      * Initialisierung der TableView Columns bzw Rows durch CellValueFactory und reaktive Bindung an Propertys
@@ -44,7 +52,7 @@ public class ExamView_Controller {
     private void initialize(){
 
         //Für jede Spalte wird der Inhalt einer jeden Zeile dynamisch an das entsprechende Property des Prüfungsleistung gebunden
-        //cellData ist dabei vom in den Generics angegebenen Typ (Prüfungslesitung) und vom entsprechend angegebenen Datentyp
+        //cellData ist dabei vom in den Generics angegebenen Typ (Prüfungsleistung) und vom entsprechend angegebenen Datentyp
 
         fach.setCellValueFactory(
                 cellData -> cellData.getValue().getFachProperty());
@@ -65,7 +73,7 @@ public class ExamView_Controller {
      */
     public void setParams (ExamView_ViewModel viewmodel, Context context){
         this.viewModel = viewmodel;
-        this.context = context;
+
 
         //Textfield Bindings Change
         PLDatum_Textfield_change.valueProperty().bindBidirectional(viewmodel.datum_changeProperty());

@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
  * Das Repository ist unabhängig
  * von der Darstellung oder Benutzerinteraktionen.
  */
-
 public class Studentrepository {
 
 

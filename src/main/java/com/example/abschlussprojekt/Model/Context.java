@@ -29,8 +29,6 @@ import java.io.IOException;
  * Außerdem übergibt Sie Abhängigkeiten über den Konstruktor
  *
  */
-
-
 public class Context {
     private final Studentrepository repository = new Studentrepository();   //Erstellen der einzigen Instanz des Respositorys
     private MainView_ViewModel main_viewModel;
